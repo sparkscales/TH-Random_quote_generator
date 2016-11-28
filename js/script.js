@@ -68,6 +68,9 @@ var quoteData = [
   }
 ];
 
+var viewedQuotes = [];
+var remainingQuotes = [];
+
 var html = '';
 
 function getRandomColor() {
@@ -85,9 +88,42 @@ function getRandomNumber(max){
   return Math.floor(Math.random() * max);
 }
 
+function pushQuote() {
+
+}
+var viewedQuotes;
+var remainingQuotes = quoteData;
+
 function getRandomQuote() {
   // Returns a random Quote within the object, using the amount of properties within that object as a max number
-  return quoteData[getRandomNumber(quoteData.length)];
+
+  // When a quote is viewed remove and stil into viewed array;
+  //When there are no quotes left in the array, take all the removed quotes and place back into the array.
+
+
+    var randomIndex = getRandomNumber(quoteData.length)
+
+    // array to hold viewed quotes
+
+
+
+
+    // if empty, reload the main list
+    if (remainingQuotes === 0) {
+      remainingQuotes = viewedQuotes.splice(0,viewedQuotes.length);
+    }
+
+
+    // (and empty viewed list)
+    // pick a quote at random
+    var randomQuote = quoteData[randomIndex];
+
+        viewedQuotes = remainingQuotes.splice(randomIndex, 1)
+    // take it out of the main list
+    // now add it to the "viewed" list
+    // Return the chosen quote
+
+
 }
 
 function printQuote() {

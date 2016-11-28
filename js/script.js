@@ -71,12 +71,13 @@ var quoteData = [
 var html = '';
 
 function getRandomColor() {
+  // Construct the RGB css property
   var color = 'rgb(';
       color += getRandomNumber(256) + ', ';
       color += getRandomNumber(256) + ', ';
       color += getRandomNumber(256) + ')';
+  // Return the background css property for the body element
   return document.body.style.backgroundColor = color;
-
 }
 
 function getRandomNumber(max){
@@ -110,6 +111,7 @@ function printQuote() {
       html += '</p>'
   // Takes the generated HTML and injects it into .quote-box
   document.getElementById('quote-box').innerHTML = html;
+
   getRandomColor();
 }
 

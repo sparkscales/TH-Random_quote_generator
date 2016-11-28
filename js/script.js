@@ -70,6 +70,15 @@ var quoteData = [
 
 var html = '';
 
+function getRandomColor() {
+  var color = 'rgb(';
+      color += getRandomNumber(256) + ', ';
+      color += getRandomNumber(256) + ', ';
+      color += getRandomNumber(256) + ')';
+  return document.body.style.backgroundColor = color;
+
+}
+
 function getRandomNumber(max){
   // Generates a random number that is between 0 and the max number
   return Math.floor(Math.random() * max);
@@ -100,7 +109,8 @@ function printQuote() {
       }
       html += '</p>'
   // Takes the generated HTML and injects it into .quote-box
-  document.getElementById('quote-box').innerHTML = html
+  document.getElementById('quote-box').innerHTML = html;
+  getRandomColor();
 }
 
 

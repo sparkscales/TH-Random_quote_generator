@@ -1,4 +1,3 @@
-
 // // Create an array of JavaScript objects to hold the data for your quotes.
 //
 // // Each quote object should have the following properties:
@@ -38,117 +37,96 @@
 
 // The object with the quote data
 
-var quoteData = [
-  {
+var quoteData = [{
     quote: 'quote1',
     source: 'source1',
     citation: 'citation1',
     year: 'year1'
-  },
-  {
+}, {
     quote: 'quote2',
     source: 'source2',
     citation: 'citation2',
     year: 'year2'
-  },
-  {
+}, {
     quote: 'quote3',
     source: 'source3',
     citation: 'citation3',
     year: 'year3'
-  },
-  {
+}, {
     quote: 'quote4',
     source: 'source4',
     year: 'year4'
-  },
-  {
+}, {
     quote: 'quote5',
     source: 'source5'
-  }
-];
-
-var viewedQuotes = [];
-var remainingQuotes = [];
+}];
 
 var html = '';
 
 function getRandomColor() {
-  // Construct the RGB css property
-  var color = 'rgb(';
-      color += getRandomNumber(256) + ', ';
-      color += getRandomNumber(256) + ', ';
-      color += getRandomNumber(256) + ')';
-  // Return the background css property for the body element
-  return document.body.style.backgroundColor = color;
+    // Construct the RGB css property
+    var color = 'rgb(';
+    color += getRandomNumber(256) + ', ';
+    color += getRandomNumber(256) + ', ';
+    color += getRandomNumber(256) + ')';
+    // Return the background css property for the body element
+    return document.body.style.backgroundColor = color;
+    console.log("background Color" + color)
 }
 
-function getRandomNumber(max){
-  // Generates a random number that is between 0 and the max number
-  return Math.floor(Math.random() * max);
+function getRandomNumber(max) {
+    // Generates a random number that is between 0 and the max number
+    return Math.floor(Math.random() * max);
 }
 
-function pushQuote() {
-
-}
-var viewedQuotes;
+// array to hold viewed quotes
+var viewedQuotes = [];
+// list of quotes
 var remainingQuotes = quoteData;
 
 function getRandomQuote() {
-  // Returns a random Quote within the object, using the amount of properties within that object as a max number
+    // Returns a random Quote within the object, using the amount of properties within that object as a max number
 
-  // When a quote is viewed remove and stil into viewed array;
-  //When there are no quotes left in the array, take all the removed quotes and place back into the array.
+    // When a quote is viewed remove and stil into viewed array;
+    //When there are no quotes left in the array, take all the removed quotes and place back into the array.
 
+    // Get randomIndex
+    var randomIndex = getRandomNumber(quoteData.length);
 
-    var randomIndex = getRandomNumber(quoteData.length)
+     var randomQuote = remainingQuotes.splice(randomIndex, 1);
+ viewedQuotes = viewedQuotes.splice(0,0, randomQuote);
 
-    // array to hold viewed quotes
-
-
-
-
-    // if empty, reload the main list
-    if (remainingQuotes === 0) {
-      remainingQuotes = viewedQuotes.splice(0,viewedQuotes.length);
+    if (remainingQuotes.length === 0) {
+      remainingQuotes = viewedQuotes.splice(0,0,viewedQuotes);
     }
-
-
-    // (and empty viewed list)
-    // pick a quote at random
-    var randomQuote = quoteData[randomIndex];
-
-        viewedQuotes = remainingQuotes.splice(randomIndex, 1)
-    // take it out of the main list
-    // now add it to the "viewed" list
-    // Return the chosen quote
-
-
+    // console.log(randomQuote);
+    return randomQuote;
 }
 
+
 function printQuote() {
-// Stores the random quote into a variable
-  var quoteContent = getRandomQuote();
-// Generates the HTML message
-  // Adds the quote HTML
-  var html  = '<p class="quote">' + quoteContent.quote + '</p>\n' ;
-  // Adds the source HTML
-      html += '<p class="source">' + quoteContent.source;
-      // Checks to see if the citation property exists
-      if (quoteContent.citation) {
+    // Stores the random quote into a variable
+    var quoteContent = getRandomQuote();
+    // Generates the HTML message
+    //   Adds the quote HTML
+    var html = '<p class="quote">' + quoteContent[1] + '</p>\n';
+    // Adds the source HTML
+    html += '<p class="source">' + quoteContent.source;
+    // Checks to see if the citation property exists
+    if (quoteContent.citation) {
         // If the citation property exists, add the citation HTML
         html += '<span class="citation">' + quoteContent.citation + '</span>';
-      }
-      // Checks to see if the year property exists
-      if (quoteContent.year) {
+    }
+    // Checks to see if the year property exists
+    if (quoteContent.year) {
         // If the year property exists, add the citation HTML
         html += '<span class="year">' + quoteContent.year + '</span>';
-      }
-      html += '</p>'
-  // Takes the generated HTML and injects it into .quote-box
-  document.getElementById('quote-box').innerHTML = html;
+    }
+    html += '</p>'
+        // Takes the generated HTML and injects it into .quote-box
+    document.getElementById('quote-box').innerHTML = html;
 
-  getRandomColor();
+    getRandomColor();
 }
 
 

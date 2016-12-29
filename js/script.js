@@ -52,6 +52,7 @@ function getRandomColor() {
     // Return the background css property for the body element
     return document.body.style.backgroundColor = color;
 }
+
 // Function to generatre a random number
 function getRandomQuote() {
     // splice a random object within the QuoteData array
@@ -59,7 +60,7 @@ function getRandomQuote() {
     // Push the spliced object into the viewedQuotes array
     viewedQuotes.push(randomQuote);
     // Condition - if the quoteData array objects are empty
-    if (quoteData.length == 0) {
+    if (quoteData.length === 0) {
         // quote data is equal to the viewedQuotes array
         quoteData = viewedQuotes;
         // set viewedQuotes to empty
@@ -69,6 +70,7 @@ function getRandomQuote() {
     return randomQuote;
 }
 
+// Print function
 function printQuote() {
     // Stores the random quote into a variable
     var quoteContent = getRandomQuote();
@@ -87,8 +89,8 @@ function printQuote() {
         // If the year property exists, add the tags HTML
         html += '\n<span class="year">' + quoteContent.year + '</span>\n';
     }
-    html += '</p>\n'
-        // Takes the generated HTML and injects it into .quote-box
+    html += '</p>\n';
+    // Takes the generated HTML and injects it into .quote-box
     document.getElementById('quote-box').innerHTML = html;
     // call the random background color function
     resetTimer();
@@ -96,6 +98,7 @@ function printQuote() {
 
 }
 
+// Reset the timer for printQuote
 function resetTimer() {
     if (timer) {
         window.clearInterval(timer);
@@ -103,6 +106,7 @@ function resetTimer() {
     }
 }
 
+// Trigger printQuote on a timer
 var timer = window.setInterval(printQuote, intervalTime);
 
 

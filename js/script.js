@@ -1,30 +1,44 @@
 // Creating an array of objects with Quote data
 var quoteData = [{
-        quote: 'quote1',
-        source: 'source1',
-        tags: ['tags1'],
-        year: 'year1'
+        quote: '... But where did the lighter fluid come from...?',
+        source: 'Arrested Development',
+        tags: ['Illusions', 'Magic', 'Mystery'],
+        author: 'GOB'
     },
     {
-        quote: 'quote2',
-        source: 'source2',
-        tags: ['tags2'],
-        year: 'year2'
+        quote: 'Any amount of cheese before a date is too much cheese',
+        source: 'It\'s Always Sunny in Philadelphia',
+        tags: ['Dating Advice', 'Nutrition'],
+        author: 'Dennis Reynolds'
     },
     {
-        quote: 'quote3',
-        source: 'source3',
-        tags: ['tags3'],
-        year: 'year3'
+        quote: 'You\’re not my friend, you\’re a Decepticon!',
+        source: 'Archer',
+        author: 'Pamela Poovey'
     },
     {
-        quote: 'quote4',
-        source: 'source4',
-        year: 'year4'
+        quote: 'I\'m feeling pretty good. Pretty, pretty, pretty, pretty good',
+        source: 'Curb Your Enthusiasm',
+        tags: ['Psychology'],
+        author: 'Larry David'
     },
     {
-        quote: 'quote5',
-        source: 'source5'
+        quote: 'The worst thing about prison? ... Was - was the dementors',
+        source: 'The Office',
+        tags:['The Streets', 'Life Lessons'],
+        author:'Prison Mike'
+    },
+    {
+      quote:'Wubba lubba dub dub',
+      source: 'Rick and Morty',
+      tags:'Philosophy',
+      author: 'Rick Sanchez'
+    },
+    {
+      quote: 'Dude, suckin\' at something is the first step at being sorta good at something',
+      source:'Adventure Time',
+      tags:['Life Lessons', 'Inspiration'],
+      author:'Jake the Dog'
     }
 ];
 
@@ -35,7 +49,7 @@ var html = '';
 var viewedQuotes = [];
 
 // Set time interval
-var intervalTime = 3000;
+var intervalTime = 5000;
 
 // Function to generate a random number that is between 0 and the max number
 function getRandomNumber(max) {
@@ -76,24 +90,32 @@ function printQuote() {
     var quoteContent = getRandomQuote();
     // Generates the HTML message
     // Adds the quote HTML
-    var html = '<p class="quote">' + quoteContent.quote + '</p>\n';
+    var html = '<p class="quote">'  + quoteContent.quote + '</p>\n';
+
+
     // Adds the source HTML
-    html += '<p class="source">' + quoteContent.source;
+    html += '<p class="source">'
+    if (quoteContent.author) {
+      // If the year property exists, add the tags HTML
+      html += '\n<span class="author"><em>' + quoteContent.author + '</em>,</span>\n';
+    }
+        // Adds the source information
+    html += quoteContent.source + '</p>\n';
+
+
+
+
+
     // Checks to see if the tags property exists
     if (quoteContent.tags) {
         // If the tags property exists, add the tags HTML
         html += '\n<span class="tags">' + quoteContent.tags.join(', ') + '</span>\n';
     }
-    // Checks to see if the year property exists
-    if (quoteContent.year) {
-        // If the year property exists, add the tags HTML
-        html += '\n<span class="year">' + quoteContent.year + '</span>\n';
-    }
-    html += '</p>\n';
     // Takes the generated HTML and injects it into .quote-box
     document.getElementById('quote-box').innerHTML = html;
-    // call the random background color function
+    // call the reset timer function to reset the setInterval time
     resetTimer();
+    // call the random background color function
     getRandomColor();
 
 }
